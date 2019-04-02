@@ -13,10 +13,19 @@ class ViewController: UIViewController, UITabBarDelegate,UITableViewDataSource,U
     
     var filterArray: [String]?
 
+    @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var tableViewOutlet: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         //Fetchening  json data
+        fetching_json()
+       // tableViewOutlet.rowHeight = UITableView.automaticDimension
+
+        //Hide menu
+        menuView.isHidden = true
+        
+    }
+    func fetching_json() {
         let jsonString = "https://restcountries.eu/rest/v2/all"
         guard let url = URL(string: jsonString) else{
             return
@@ -41,9 +50,9 @@ class ViewController: UIViewController, UITabBarDelegate,UITableViewDataSource,U
                 print(error.localizedDescription)
             }
             
-        }.resume()
-        
+            }.resume()
     }
+    // Showing data in tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = filterArray?.count{
             return count
@@ -58,6 +67,8 @@ class ViewController: UIViewController, UITabBarDelegate,UITableViewDataSource,U
         }
         return cell
     }
+    
+    // For searching
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if (searchBar.text?.isEmpty)!{
             self.filterArray = countryName
@@ -66,7 +77,16 @@ class ViewController: UIViewController, UITabBarDelegate,UITableViewDataSource,U
         }
         self.tableViewOutlet.reloadData()
     }
+    //Menu Action
+    
 
-
+    @IBAction func MenuAction(_ sender: UIBarButtonItem) {
+        if menuView.isHidden != true{
+            menuView.isHidden = true
+        }else{
+            menuView.isHidden = false
+        }
+    }
+    
 }
 
