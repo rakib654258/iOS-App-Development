@@ -46,6 +46,7 @@ class secondViewController: UIViewController {
                 }
             }
         }
+        
         name.text = countryDetails?.name
         alpha2.text = countryDetails?.alpha2Code
         calling.text = countryDetails?.callingCodes[0]
@@ -54,7 +55,10 @@ class secondViewController: UIViewController {
         subreg.text = countryDetails?.subregion
         population.text! = "\(String(describing: countryDetails?.population))"
         latlng.text = "\(countryDetails?.latlng)" //as? String
-        area.text = "\(String(describing: countryDetails?.area))"
+//        area.text = String(describing: countryDetails?.area!)
+        if let area = countryDetails?.area{
+            self.area.text = "\(area)"
+        }
         time.text = countryDetails?.timezones[0]
         //borders.text = countryDetails?.borders[0]
         currencies.text = "\(String(describing: countryDetails?.currencies[0]))"

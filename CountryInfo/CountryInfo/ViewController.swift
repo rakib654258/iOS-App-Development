@@ -17,9 +17,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var myIndex : Int?
     
 
+    @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var menuViewLeading: NSLayoutConstraint!
     @IBOutlet weak var searchOutlet: UISearchBar!
     @IBOutlet weak var SegmentOutlet: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    
+    var menuShowing = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Fetchening  json data
@@ -27,6 +32,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //tableView.rowHeight = UITableView.automaticDimension
         //Initially hide the search bar
         //searchOutlet.isHidden = true
+        
+        //Hide MenuBar
+        menuViewLeading.constant = -285
     }
     func fetching_json() {
         let jsonString = "https://restcountries.eu/rest/v2/all"
@@ -138,8 +146,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
 
     @IBAction func MenuAction(_ sender: UIBarButtonItem) {
-    }
-    @IBAction func SegmentAction(_ sender: UISegmentedControl) {
+        if menuShowing{
+            menuViewLeading.constant = -285
+            UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+            })
+        }else{
+            menuViewLeading.constant = 0
+            UIView.animate(withDuration: 0.3, animations : {
+                self.view.layoutIfNeeded()
+            })
+        }
+        menuShowing = !menuShowing
     }
 
 ////    @IBAction func searchButton(_ sender: UIButton) {
