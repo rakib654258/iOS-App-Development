@@ -18,11 +18,11 @@ class AddToDoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
     
     @IBAction func saveAction(_ sender: UIButton) {
-        let toDo = ToDo()
+        //Working AddToDo List without CoreData
+      /*  let toDo = ToDo()
         toDo.iteam = textField.text!
         toDo.important = switchLabel.isOn
         
@@ -30,6 +30,18 @@ class AddToDoViewController: UIViewController {
         previousVC.tableView.reloadData()
         
         navigationController?.popViewController(animated: true)
+ */
+        //MARK: Save data into coredata
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
+            let toDo = ToDoCoreData(entity: ToDoCoreData.entity(), insertInto: context)
+            
+            if let iteam = textField.text{
+                toDo.name = iteam
+                toDo.important = switchLabel.isOn
+            }
+            try? context.save()
+            navigationController?.popViewController(animated: true)
+        }
     }
     
 }

@@ -12,25 +12,34 @@ class CompleteToDoViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     var previousVC = ViewController()
-    var selectedToDo = ToDo()
+    var selectedToDo : ToDoCoreData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleLabel.text = selectedToDo.iteam
+        titleLabel.text = selectedToDo?.name
     }
     
     @IBAction func completeAction(_ sender: UIButton) {
-        var index = 0
-        for toDo in previousVC.toDos{
-            if toDo.iteam == selectedToDo.iteam{
-                //print("We found it! \(toDo.iteam) \(index)")
-                previousVC.toDos.remove(at: index)
-                previousVC.tableView.reloadData()
+//       // Delete data
+//        var index = 0
+//        for toDo in previousVC.toDos{
+//            if toDo.name == selectedToDo.name{
+//                //print("We found it! \(toDo.iteam) \(index)")
+//                previousVC.toDos.remove(at: index)
+//                previousVC.tableView.reloadData()
+//                navigationController?.popViewController(animated: true)
+//                //break
+//            }
+//            index += 1
+//        }
+        // MARK: Delete data from coredata
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+            if let theToDo = selectedToDo {
+                context.delete(theToDo)
+                try? context.save()
                 navigationController?.popViewController(animated: true)
-                //break
             }
-            index += 1
         }
     }
     
