@@ -10,13 +10,17 @@ import UIKit
 
 class CompleteToDoViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var buttonOutlet: UIButton!
     
     var previousVC = ViewController()
     var selectedToDo : ToDoCoreData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        buttonOutlet.layer.cornerRadius = 20.0
+        buttonOutlet.layer.masksToBounds = true
+        
         titleLabel.text = selectedToDo?.name
     }
     

@@ -14,7 +14,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var toDos : [ToDoCoreData] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //Navigation bar large title
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
         //toDos = createToDos()
         //getCoreData()
     }
@@ -59,9 +61,15 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let toDo = toDos[indexPath.row]
         if toDo.important{
             cell.iteamLabel.text = "⭐️" + toDo.name!
+            if let date = toDo.date{
+                cell.dateLabel.text = "End Task: " + "\(date)"
+            }
         }
         else{
             cell.iteamLabel.text = toDo.name
+            if let date = toDo.date{
+                cell.dateLabel.text = "End Task: " + "\(date)"
+            }
         }
         
         return cell
@@ -81,7 +89,51 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             }
         }
     }
+    // Swipe Action in tableView Cell
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = deleteAction(at: indexPath)
+        
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    func deleteAction(at indexpath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            self.toDos.remove(at: indexpath.row)
+            self.tableView.deleteRows(at: [indexpath], with: .automatic)
+            completion(true)
+            
+            //delete from coredata
+            if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+                if let theToDo = self.toDos[indexpath.row] {
+                    context.delete(theToDo)
+                    try? context.save()
+                    navigationController?.popViewController(animated: true)
+                }
+            }
+            ///
+            
+        }
+        //action.image = tash
+        action.backgroundColor = .red
+        
+        return action
+    }
     
-
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let complete = completeAction(at: indexPath)
+        
+        return UISwipeActionsConfiguration(actions: [complete])
+    }
+    func completeAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Complete") { (action, view, completion) in
+            self.toDos.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            completion(true)
+        }
+        //action.image = tick
+        action.backgroundColor = .green
+        //action.textColor = .black
+        
+        return action
+    }
 }
 

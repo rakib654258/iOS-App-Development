@@ -17,6 +17,8 @@ class AddToDoViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     override func viewDidLoad() {
         super.viewDidLoad()
+        //navigationBar Large title 
+        navigationItem.largeTitleDisplayMode = .never
 
     }
     
@@ -39,6 +41,13 @@ class AddToDoViewController: UIViewController {
                 toDo.name = iteam
                 toDo.important = switchLabel.isOn
             }
+            // save date into coredata from datepicker
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "dd-MM-yyyy"
+//            toDo.date = formatter.string(from: datePicker.date)
+            
+            toDo.date = datePicker.date
+            print(datePicker.date)
             try? context.save()
             navigationController?.popViewController(animated: true)
         }
