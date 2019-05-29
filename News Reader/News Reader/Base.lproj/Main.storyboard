@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="o4J-NC-FH7">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="109" width="375" height="558"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleCell" rowHeight="209" id="WW3-gt-QTZ" customClass="TitleTableViewCell" customModule="News_Reader" customModuleProvider="target">
@@ -81,6 +81,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="wpl-bX-3ab" secondAttribute="bottom" constant="8" id="ufn-Ih-nti"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.095514081418514252" green="0.53939878940582275" blue="0.12352920323610306" alpha="0.65108625856164382" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="authorView" destination="52Y-q6-vio" id="Nku-rh-y8E"/>
                                             <outlet property="dateView" destination="wpl-bX-3ab" id="PBR-88-cBU"/>
@@ -95,18 +96,38 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="ofT-o0-oSC"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News Headlines" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6G-ev-PJD">
+                                <rect key="frame" x="0.0" y="66" width="375" height="40"/>
+                                <color key="backgroundColor" red="0.095329530537128448" green="0.5403558611869812" blue="0.12352123111486435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Rm5-HO-e4n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.95202803940000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="o4J-NC-FH7" firstAttribute="top" secondItem="K6G-ev-PJD" secondAttribute="bottom" constant="3" id="2KF-c1-8Pj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="o4J-NC-FH7" secondAttribute="bottom" id="69w-ld-jNJ"/>
-                            <constraint firstItem="o4J-NC-FH7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Fi8-vU-QMu"/>
+                            <constraint firstItem="K6G-ev-PJD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Bi7-yG-juV"/>
+                            <constraint firstItem="K6G-ev-PJD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OTa-FY-Y7e"/>
                             <constraint firstItem="o4J-NC-FH7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ahL-z5-T5T"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="o4J-NC-FH7" secondAttribute="trailing" id="pFO-xu-tiB"/>
+                            <constraint firstItem="K6G-ev-PJD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="2" id="uXn-tr-02X"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="News Reader" id="PkK-Vm-Vbd"/>
+                    <navigationItem key="navigationItem" title="News Reader" id="PkK-Vm-Vbd">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="menu copy" id="8PR-Tg-QEn">
+                            <connections>
+                                <action selector="menuAction:" destination="BYZ-38-t0r" id="JPm-LG-Ai6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="countryName" destination="K6G-ev-PJD" id="E5I-Af-lzD"/>
                         <outlet property="tableView" destination="o4J-NC-FH7" id="MzU-Ui-IcQ"/>
                         <segue destination="vuM-jD-wCP" kind="show" identifier="webView" id="evD-vg-jtr"/>
                     </connections>
@@ -174,4 +195,7 @@
             <point key="canvasLocation" x="460" y="127"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="menu copy" width="64" height="64"/>
+    </resources>
 </document>

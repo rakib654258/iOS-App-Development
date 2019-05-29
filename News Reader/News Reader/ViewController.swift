@@ -10,20 +10,22 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var countryName: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var myIndex: Int?
     //var articles: Articles?
 //    var ArticleArray: [Articles] = []
         var ArticleArray = [Article]()
+        var source = "us"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        fetchArticlesJSON()
+        fetchArticlesJSON(fromSource: source)
     }
     
-    func fetchArticlesJSON(){
-        let jsonUrl = "https://newsapi.org/v2/top-headlines?country=us&apiKey=bb1270b8046e4a26b6dbdc87b4527e6e"
+    func fetchArticlesJSON(fromSource provider: String){
+        let jsonUrl = "https://newsapi.org/v2/top-headlines?country=\(provider)&apiKey=bb1270b8046e4a26b6dbdc87b4527e6e"
         guard let url = URL(string: jsonUrl) else{
             return
         }
@@ -84,6 +86,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             }
             
+            if source == "us"{
+                countryName.text = "United States News Headlines"
+            }
+            if source == "ca"{
+                countryName.text = "canada News Headlines"
+            }
+            if source == "sg"{
+                countryName.text = "Singapore News Headlines"
+            }
+            if source == "sa"{
+                countryName.text = "Saudi Arabia News Headlines"
+            }
+            
         }else{
             print("Doesn't contain a imageURL!")
         }
@@ -105,6 +120,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let sendData = segue.destination as! WebViewViewController
         sendData.urlString = ArticleArray[myIndex!].url
     }
+    
+    //create a object of menuManager
+    let menuManager = MenuManager()
+    @IBAction func menuAction(_ sender: UIBarButtonItem) {
+        menuManager.openMenu()
+        menuManager.mainVC = self
+    }
+    
 
 
 }

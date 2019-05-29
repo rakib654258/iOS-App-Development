@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4307DB842290697A008FCCA5 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307DB832290697A008FCCA5 /* Article.swift */; };
 		437E422E229A722300DF4750 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437E422D229A722300DF4750 /* WebViewViewController.swift */; };
+		439F0FB8229E5C7B003A6F8A /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F0FB7229E5C7B003A6F8A /* MenuManager.swift */; };
+		439F0FBA229E8217003A6F8A /* BaseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 439F0FB9229E8217003A6F8A /* BaseCell.xib */; };
+		439F0FBC229E8524003A6F8A /* BaseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F0FBB229E8524003A6F8A /* BaseViewCell.swift */; };
 		43DC91A52290414700481080 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DC91A42290414700481080 /* AppDelegate.swift */; };
 		43DC91A72290414700481080 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DC91A62290414700481080 /* ViewController.swift */; };
 		43DC91AA2290414700481080 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43DC91A82290414700481080 /* Main.storyboard */; };
@@ -20,6 +23,9 @@
 /* Begin PBXFileReference section */
 		4307DB832290697A008FCCA5 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		437E422D229A722300DF4750 /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
+		439F0FB7229E5C7B003A6F8A /* MenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
+		439F0FB9229E8217003A6F8A /* BaseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseCell.xib; sourceTree = "<group>"; };
+		439F0FBB229E8524003A6F8A /* BaseViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewCell.swift; sourceTree = "<group>"; };
 		43DC91A12290414600481080 /* News Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "News Reader.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43DC91A42290414700481080 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43DC91A62290414700481080 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +75,9 @@
 				43DC91B622904A1F00481080 /* TitleTableViewCell.swift */,
 				4307DB832290697A008FCCA5 /* Article.swift */,
 				437E422D229A722300DF4750 /* WebViewViewController.swift */,
+				439F0FB7229E5C7B003A6F8A /* MenuManager.swift */,
+				439F0FB9229E8217003A6F8A /* BaseCell.xib */,
+				439F0FBB229E8524003A6F8A /* BaseViewCell.swift */,
 			);
 			path = "News Reader";
 			sourceTree = "<group>";
@@ -131,6 +140,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439F0FBA229E8217003A6F8A /* BaseCell.xib in Resources */,
 				43DC91AF2290414800481080 /* LaunchScreen.storyboard in Resources */,
 				43DC91AC2290414800481080 /* Assets.xcassets in Resources */,
 				43DC91AA2290414700481080 /* Main.storyboard in Resources */,
@@ -144,6 +154,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439F0FB8229E5C7B003A6F8A /* MenuManager.swift in Sources */,
+				439F0FBC229E8524003A6F8A /* BaseViewCell.swift in Sources */,
 				437E422E229A722300DF4750 /* WebViewViewController.swift in Sources */,
 				4307DB842290697A008FCCA5 /* Article.swift in Sources */,
 				43DC91A72290414700481080 /* ViewController.swift in Sources */,
